@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
-const Videogame = require("../src/api/models/videogame.model");
+const Videogame = require("../api/models/videogame.model");
 
 const MONGODB_URL = process.env.MONGODB_URL;
 
