@@ -1,4 +1,4 @@
-const Videogame = require("../api/models/videogame.model");
+const Videogame = require("../models/videogame.model");
 
 const getVideogames = async (req, res) => {
   try {
@@ -6,6 +6,33 @@ const getVideogames = async (req, res) => {
     return res.status(200).json(allVideogames);
   } catch (error) {
     return res.status(500).json(error);
+  }
+};
+const getVideogamesById = async (req, res) => {
+  const id = req.params.id;
+  try {
+      const videogamesById = await Videogame.findById(id);
+      if (!videogamesById) {
+          return res.status(404).json("Any console exists with this ID");
+      }
+      return res.status(200).json(videogamesById);
+  }
+  catch (error) {
+      return res.status(500).json(error);
+  }
+};
+const getVideogamesByName = async (req, res) => {
+  const {name} = req.params;
+  const regex = new RegExp(name, "i");
+  try {
+      const videogamesByName = await Videogame.find({name: regex});
+      if (!videogamesByName.length) {
+          return res.status(404).json("Any game with this name exists in DB");
+      }
+      return res.status(200).json(videogamesByName);
+  }
+  catch (error) {
+      return res.status(500).json(error);
   }
 };
 const postVideogames = async (req, res) => {
@@ -53,4 +80,4 @@ const putVideogames = async (req, res) => {
   }
 };
 
-module.exports = { getVideogames, postVideogames, deleteVideogames, putVideogames };
+module.exports = { getVideogames, getVideogamesById, getVideogamesByName, postVideogames, deleteVideogames, putVideogames };
