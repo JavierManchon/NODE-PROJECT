@@ -8,7 +8,7 @@ const MONGODB_URL = process.env.MONGODB_URL;
 const arrayVideogames = [
     {
         name: "EA Sports FC 24",
-        date: "2021",
+        date: "2023",
         rating: 4.5,
         duration: 60,
         genre: "Sports"
