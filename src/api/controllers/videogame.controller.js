@@ -1,14 +1,14 @@
 const Videogame = require("../models/videogame.model");
 
-const getVideogames = async (req, res) => {
+const getVideogames = async (req, res, next) => {
   try {
     const allVideogames = await Videogame.find();
     return res.status(200).json(allVideogames);
   } catch (error) {
-    return res.status(500).json(error);
+    return next(error);
   }
 };
-const getVideogamesById = async (req, res) => {
+const getVideogamesById = async (req, res, next) => {
   const id = req.params.id;
   try {
       const videogamesById = await Videogame.findById(id);
@@ -18,10 +18,10 @@ const getVideogamesById = async (req, res) => {
       return res.status(200).json(videogamesById);
   }
   catch (error) {
-      return res.status(500).json(error);
+      return next(error);
   }
 };
-const getVideogamesByName = async (req, res) => {
+const getVideogamesByName = async (req, res, next) => {
   const {name} = req.params;
   const regex = new RegExp(name, "i");
   try {
@@ -32,10 +32,10 @@ const getVideogamesByName = async (req, res) => {
       return res.status(200).json(videogamesByName);
   }
   catch (error) {
-      return res.status(500).json(error);
+      return next(error);
   }
 };
-const postVideogames = async (req, res) => {
+const postVideogames = async (req, res, next) => {
   try {
     const newVideogame = new Videogame({
       name: req.body.name,
@@ -47,10 +47,10 @@ const postVideogames = async (req, res) => {
     const createdVideogame = await newVideogame.save();
     return res.status(201).json(createdVideogame);
   } catch (error) {
-    return res.status(500).json(error);
+      return next(error);
   }
 };
-const deleteVideogames = async (req, res) => {
+const deleteVideogames = async (req, res, next) => {
   try {
     const { id } = req.params;
     const deletedVideogame = await Videogame.findByIdAndDelete(id);
@@ -59,10 +59,10 @@ const deleteVideogames = async (req, res) => {
     }
     return res.status(200).json(deletedVideogame);
   } catch (error) {
-    return res.status(500).json(error);
+      return next(error);
   }
 };
-const putVideogames = async (req, res) => {
+const putVideogames = async (req, res, next) => {
   try {
     const { id } = req.params;
     const putVideogame = new Videogame(req.body);
@@ -76,7 +76,7 @@ const putVideogames = async (req, res) => {
     }
     return res.status(200).json(updatedVideogame);
   } catch (error) {
-    return res.status(500).json(error);
+      return next(error);
   }
 };
 

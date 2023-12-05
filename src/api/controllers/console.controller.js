@@ -1,14 +1,14 @@
 const Console = require("../models/console.model");
 
-const getConsoles = async (req, res) => {
+const getConsoles = async (req, res, next) => {
   try {
     const allConsoles = await Console.find().populate("videogames");
     return res.status(200).json(allConsoles);
   } catch (error) {
-    return res.status(500).json(error);
+    return next(error);
   }
 };
-const getConsolesById = async (req, res) => {
+const getConsolesById = async (req, res, next) => {
   const id = req.params.id;
   try {
       const consolesById = await Console.findById(id);
@@ -18,10 +18,10 @@ const getConsolesById = async (req, res) => {
       return res.status(200).json(consolesById);
   }
   catch (error) {
-      return res.status(500).json(error);
+    return next(error);
   }
 };
-const getConsolesByName = async (req, res) => {
+const getConsolesByName = async (req, res, next) => {
   const {name} = req.params;
   const regex = new RegExp(name, "i");
   try {
@@ -32,10 +32,10 @@ const getConsolesByName = async (req, res) => {
       return res.status(200).json(consolesByName);
   }
   catch (error) {
-      return res.status(500).json(error);
+      return next(error);
   }
 };
-const postConsoles = async (req, res) => {
+const postConsoles = async (req, res, next) => {
   try {
     const newConsole = new Console({
       name: req.body.name,
@@ -45,10 +45,10 @@ const postConsoles = async (req, res) => {
     const createdConsole = await newConsole.save();
     return res.status(201).json(createdConsole);
   } catch (error) {
-    return res.status(500).json(error);
+      return next(error);
   }
 };
-const deleteConsoles = async (req, res) => {
+const deleteConsoles = async (req, res, next) => {
   try {
     const { id } = req.params;
     const deletedConsole = await Console.findByIdAndDelete(id);
@@ -57,10 +57,10 @@ const deleteConsoles = async (req, res) => {
     }
     return res.status(200).json(deletedConsole);
   } catch (error) {
-    return res.status(500).json(error);
+      return next(error);
   }
 };
-const putConsoles = async (req, res) => {
+const putConsoles = async (req, res, next) => {
   try {
     const { id } = req.params;
     const putConsole = new Console(req.body);
@@ -74,10 +74,10 @@ const putConsoles = async (req, res) => {
     }
     return res.status(200).json(updatedConsole);
   } catch (error) {
-    return res.status(500).json(error);
+      return next(error);
   }
 };
-const addVideogames = async (req, res) => {
+const addVideogames = async (req, res, next) => {
   try {
       const {consoleId} = req.body;
       const {videogameId} = req.body;
@@ -88,7 +88,7 @@ const addVideogames = async (req, res) => {
       return res.status(200).json(consoleUpdated);
   }
   catch (error) {
-      return res.status(500).json(error);
+      return next(error);
   }
 };
 
