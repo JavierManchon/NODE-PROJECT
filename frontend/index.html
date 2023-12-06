@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>¡Añade tu último videojuego!</h1>
-    <form id="videogameForm">
+    <form id="videogameForm" action="action" method="POST" enctype="multipart/form-data">
         <input type="text" id="name" name="name" placeholder="Título" required>
         <input type="text" id="date" name="date" placeholder="Año de lanzamiento">
         <input type="number" id="rating" name="rating" placeholder="Nota (De 1 a 5)">
@@ -21,6 +21,7 @@
             <option value="Racing">Racing</option>
             <option value="RPG">RPG</option>
         </select>
+        <input type="file" id="picture" name="picture" placeholder="Solo admite archivos .JPG, .JPEG y .PNG">
         <button type="submit">Añadir videojuego</button>
     </form>
 

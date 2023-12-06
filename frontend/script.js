@@ -26,20 +26,17 @@ async function fetchVideogames() {
 }
 
 async function addVideogame() {
-    const videogameData = {
-        name: document.getElementById('name').value,
-        date: document.getElementById('date').value,
-        rating: document.getElementById('rating').value,
-        duration: document.getElementById('duration').value,
-        genre: document.getElementById('genre').value
-    };
+    const formData = new FormData();
+    formData.append('name', document.getElementById('name').value);
+    formData.append('date', document.getElementById('date').value);
+    formData.append('rating', document.getElementById('rating').value);
+    formData.append('duration', document.getElementById('duration').value);
+    formData.append('genre', document.getElementById('genre').value);
+    formData.append('picture', document.getElementById('picture').files[0]);
 
     await fetch('http://localhost:3000/videogames', { 
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(videogameData),
+        body: formData,
     });
 
     fetchVideogames();
