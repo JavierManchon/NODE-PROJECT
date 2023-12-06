@@ -8,7 +8,8 @@ const videogamesSchema = new Schema(
         date:{type:String,require:true},
         rating:{type:Number},
         duration:{type:Number},
-        genre:{type:String, enum:["Sports", "Fighting", "MMORPG", "MOBA", "Racing", "RPG"]}
+        genre:{type:String, enum:["Sports", "Fighting", "MMORPG", "MOBA", "Racing", "RPG"]},
+        picture:{type: String}
     },{
         timestamps:true
     }

@@ -37,12 +37,14 @@ const getVideogamesByName = async (req, res, next) => {
 };
 const postVideogames = async (req, res, next) => {
   try {
+    const videogamePicture = req.file ? req.file.filename : null;
     const newVideogame = new Videogame({
       name: req.body.name,
       date: req.body.date,
       rating: req.body.rating,
       duration: req.body.duration,
-      genre: req.body.genre
+      genre: req.body.genre,
+      picture: videogamePicture
     });
     const createdVideogame = await newVideogame.save();
     return res.status(201).json(createdVideogame);
