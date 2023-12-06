@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Videojuegos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>¡Añade tu último videojuego!</h1>
+    <form id="videogameForm">
+        <input type="text" id="name" name="name" placeholder="Título" required>
+        <input type="text" id="date" name="date" placeholder="Año de lanzamiento">
+        <input type="number" id="rating" name="rating" placeholder="Nota (De 1 a 5)">
+        <input type="number" id="duration" name="duration" placeholder="Duracion (horas)">
+        <select id="genre" name="genre">
+            <option value="Fighting">Fighting</option>
+            <option value="Sports">Sports</option>
+            <option value="MMORPG">MMORPG</option>
+            <option value="MOBA">MOBA</option>
+            <option value="Racing">Racing</option>
+            <option value="RPG">RPG</option>
+        </select>
+        <button type="submit">Añadir videojuego</button>
+    </form>
+
+    <h2>Mis videojuegos</h2>
+    <div id="videogamesList"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

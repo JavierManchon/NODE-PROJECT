@@ -37,10 +37,12 @@ const getConsolesByName = async (req, res, next) => {
 };
 const postConsoles = async (req, res, next) => {
   try {
+    const consolePicture = req.file ? req.file_url : null;
     const newConsole = new Console({
       name: req.body.name,
       portability: req.body.portability,
-      videogames: []
+      videogames: [],
+      picture: consolePicture
     });
     const createdConsole = await newConsole.save();
     return res.status(201).json(createdConsole);

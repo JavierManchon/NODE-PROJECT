@@ -37,7 +37,7 @@ const getVideogamesByName = async (req, res, next) => {
 };
 const postVideogames = async (req, res, next) => {
   try {
-    const videogamePicture = req.file ? req.file.filename : null;
+    const videogamePicture = req.file ? req.file_url : null;
     const newVideogame = new Videogame({
       name: req.body.name,
       date: req.body.date,

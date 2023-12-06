@@ -7,7 +7,8 @@ const consolesSchema = new Schema(
     {
         name:{type:String,require:true},
         portability:{type: Boolean},
-        videogames:[{type:Schema.Types.ObjectId,ref:"videogame"}]
+        videogames:[{type:Schema.Types.ObjectId,ref:"videogame"}],
+        picture:{type:String}
     },{
         timestamps:true
     }
