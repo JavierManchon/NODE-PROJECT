@@ -21,7 +21,12 @@ async function fetchVideogames() {
                                 <p class="videogame-duration"><span class="bold">Duración:</span> ${videogame.duration}h</p>
                                 <p class="videogame-genre"><span class="bold">Género:</span> ${videogame.genre}</p>
                             </div>`;
-        videogamesList.innerHTML += videogameCard;
+        videogamesList.insertAdjacentHTML('beforeend', videogameCard);
+        const lastVideogameCard = videogamesList.lastElementChild;
+        const deleteButton = document.createElement('button');
+        deleteButton.innerText = 'Eliminar';
+        deleteButton.addEventListener('click', () => deleteVideogame(videogame._id));
+        lastVideogameCard.appendChild(deleteButton);
     });
 }
 
@@ -40,4 +45,15 @@ async function addVideogame() {
     });
 
     fetchVideogames();
+}
+
+async function deleteVideogame(id) {
+    try {
+        await fetch(`http://localhost:3000/videogames/${id}`, {
+            method: 'DELETE',
+        });
+        fetchVideogames();
+    } catch (error) {
+        console.error('Error deleting videogame:', error);
+    }
 }
