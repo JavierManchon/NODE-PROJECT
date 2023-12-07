@@ -4,30 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Videojuegos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>¡Añade tu último videojuego!</h1>
-    <form id="videogameForm" action="action" method="POST" enctype="multipart/form-data">
-        <input type="text" id="name" name="name" placeholder="Título" required>
-        <input type="text" id="date" name="date" placeholder="Año de lanzamiento">
-        <input type="number" id="rating" name="rating" placeholder="Nota (De 1 a 5)">
-        <input type="number" id="duration" name="duration" placeholder="Duracion (horas)">
-        <select id="genre" name="genre">
-            <option value="Fighting">Fighting</option>
-            <option value="Sports">Sports</option>
-            <option value="MMORPG">MMORPG</option>
-            <option value="MOBA">MOBA</option>
-            <option value="Racing">Racing</option>
-            <option value="RPG">RPG</option>
-        </select>
-        <input type="file" id="picture" name="picture" placeholder="Solo admite archivos .JPG, .JPEG y .PNG">
-        <button type="submit">Añadir videojuego</button>
-    </form>
-
-    <h2>Mis videojuegos</h2>
-    <div id="videogamesList"></div>
-
+    <header>
+        <div class="header__info">
+            <h1>¡Te damos la bienvenida a <span>GameShelving</span>!</h1>
+            <h3>GameShelving es tu nueva plataforma de registro de partidas de tus videojuegos favoritos.</h3>
+        </div>
+        <form id="videogameForm" action="action" method="POST" enctype="multipart/form-data">
+            <label for="name">Título</label>
+            <input type="text" id="name" name="name" placeholder="Jak and Daxter" required>
+            <label for="date">Año de lanzamiento</label>
+            <input type="text" id="date" name="date" placeholder="2001" required>
+            <label for="rating">Nota (de 1 a 5)</label>
+            <input type="number" min="1" max="5" id="rating" name="rating" placeholder="4" required>
+            <label for="duration" min="0">Duracion (horas)</label>
+            <input type="number" id="duration" name="duration" placeholder="30" required>
+            <label for="genre">Género</label>
+            <select id="genre" name="genre" required>
+                <option value="RPG">RPG</option>
+                <option value="Fighting">Fighting</option>
+                <option value="Sports">Sports</option>
+                <option value="MMORPG">MMORPG</option>
+                <option value="MOBA">MOBA</option>
+                <option value="Racing">Racing</option>
+            </select>
+            <label for="file">Añade una foto de portada (JPG, JPEG o PNG)</label>
+            <input type="file" id="picture" name="picture" required>
+            <button type="submit">¡Añade tu videojuego!</button>
+        </form>
+    </header>
+    <main>
+        <h2>Mis videojuegos</h2>
+        <div id="videogamesList"></div>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
